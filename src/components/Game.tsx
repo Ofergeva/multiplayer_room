@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Send, LogOut, Lock } from 'lucide-react';
 import { socket } from '../socket';
-import type { Direction, PlayerState, ChatMessage } from '../types';
+import type { Direction, PlayerState, ChatMessage, TintDeg } from '../types';
+import { TINT_ACCENT_COLORS } from '../types';
 
 /* ─── Constants ─────────────────────────────────────────── */
 const SW = 110;             // sprite frame width
@@ -29,6 +30,7 @@ interface GamePlayer {
   id: string;
   handle: string;
   spriteChoice: 0 | 1;
+  tintDeg: number;
   x: number;       // current visual x
   y: number;       // current visual y
   tx: number;      // target x
@@ -295,6 +297,8 @@ interface GameProps {
   myId: string;
   myHandle: string;
   mySprite: 0 | 1;
+  myTint: number;
+  roomHue: number;
   initialX: number;
   initialY: number;
   initialPlayers: PlayerState[];
@@ -302,7 +306,7 @@ interface GameProps {
 }
 
 export default function Game({
-  myId, myHandle, mySprite,
+  myId, myHandle, mySprite, myTint, roomHue,
   initialX, initialY, initialPlayers,
   onLeave,
 }: GameProps) {
@@ -331,7 +335,7 @@ export default function Game({
     map.clear();
 
     map.set(myId, {
-      id: myId, handle: myHandle, spriteChoice: mySprite,
+      id: myId, handle: myHandle, spriteChoice: mySprite, tintDeg: myTint,
       x: initialX, y: initialY,
       tx: initialX, ty: initialY,
       direction: 'down', moving: false,
@@ -556,23 +560,29 @@ export default function Game({
       ctx.clip();
       ctx.translate(-cam.x + w / 2, -cam.y + gh / 2);
 
+      if (roomHue !== 0) { ctx.save(); ctx.filter = `hue-rotate(${roomHue}deg)`; }
       drawBackground(ctx, cam, w, gh);
+      if (roomHue !== 0) ctx.restore();
 
       // sort by y for painters-algorithm depth
       const sorted = Array.from(players.values()).sort((a, b) => a.y - b.y);
 
       for (const p of sorted) {
         const sheet = sheetsRef.current[p.spriteChoice];
+
+        // Apply hue-rotate tint for sprite draw only
+        if (p.tintDeg !== 0) { ctx.save(); ctx.filter = `hue-rotate(${p.tintDeg}deg)`; }
         const drawn = sheet.draw(ctx, p.direction, p.frame, p.x, p.y);
         if (!drawn) drawFallback(ctx, p);
+        if (p.tintDeg !== 0) ctx.restore();
 
-        // handle label
+        // handle label with accent color
         ctx.save();
         ctx.font = 'bold 11px system-ui, sans-serif';
         ctx.textAlign = 'center';
         ctx.fillStyle = 'rgba(0,0,0,0.55)';
         ctx.fillText(p.handle, p.x + 1, p.y - SH / 2 - 7);
-        ctx.fillStyle = p.id === myId ? '#fff' : '#e8e8e8';
+        ctx.fillStyle = TINT_ACCENT_COLORS[p.tintDeg as TintDeg] ?? '#e8e8e8';
         ctx.fillText(p.handle, p.x, p.y - SH / 2 - 8);
         ctx.restore();
 
