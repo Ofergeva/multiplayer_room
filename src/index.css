@@ -1,0 +1,223 @@
+/* ─── Reset ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #1a1a2e;
+  color: #f0f0f0;
+}
+
+/* ─── Join screen ────────────────────────────────── */
+.join-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+}
+
+.join-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 40px;
+  width: 360px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.join-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 28px;
+  color: #e8e8ff;
+  letter-spacing: 0.5px;
+}
+
+.join-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.join-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: rgba(255,255,255,0.5);
+}
+
+.join-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  color: #f0f0f0;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.join-input:focus {
+  border-color: rgba(100,160,255,0.6);
+}
+.join-input::placeholder { color: rgba(255,255,255,0.3); }
+
+/* ─── Sprite picker ──────────────────────────────── */
+.sprite-picker {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.sprite-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 8px;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  color: #ccc;
+  font-size: 0;
+}
+.sprite-option:hover {
+  border-color: rgba(100,160,255,0.4);
+  background: rgba(255,255,255,0.08);
+}
+.sprite-option.selected {
+  border-color: #5b9bd5;
+  background: rgba(91,155,213,0.15);
+}
+
+.sprite-preview { display: flex; align-items: center; justify-content: center; }
+.sprite-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+}
+.sprite-option.selected .sprite-label { color: #9ecfff; }
+
+/* ─── Join button ────────────────────────────────── */
+.join-btn {
+  margin-top: 16px;
+  padding: 12px;
+  background: #5b9bd5;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.join-btn:hover { background: #4a8bc5; }
+.join-btn:active { background: #3a7bb5; }
+
+.join-error {
+  font-size: 13px;
+  color: #ff7b7b;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* ─── Game layout ────────────────────────────────── */
+.game-root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.game-canvas {
+  flex: 1;
+  display: block;
+  width: 100%;
+  cursor: crosshair;
+}
+
+/* ─── Chat bar ───────────────────────────────────── */
+.chat-bar {
+  height: 60px;
+  background: #111827;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  flex-shrink: 0;
+}
+
+.chat-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.private-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #c084fc;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+.chat-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  color: #f0f0f0;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  min-width: 0;
+}
+.chat-input:focus { border-color: rgba(100,160,255,0.5); }
+.chat-input::placeholder { color: rgba(255,255,255,0.3); }
+
+.chat-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.send-btn {
+  background: #5b9bd5;
+  color: white;
+}
+.send-btn:hover { background: #4a8bc5; }
+
+.leave-btn {
+  background: rgba(255,80,80,0.15);
+  color: #ff7b7b;
+  border: 1px solid rgba(255,80,80,0.25);
+}
+.leave-btn:hover { background: rgba(255,80,80,0.25); }
