@@ -6,7 +6,8 @@
     "dev": "concurrently \"npm run server\" \"vite\"",
     "server": "tsx watch server/index.ts",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "tsx server/index.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",

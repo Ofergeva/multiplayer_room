@@ -24,9 +24,11 @@ app.use(cors());
 app.use(express.json());
 
 const httpServer = createServer(app);
+const CORS_ORIGIN = process.env.CORS_ORIGIN ?? 'http://localhost:5173';
+
 const io = new Server(httpServer, {
   cors: {
-    origin: ['http://localhost:5173'],
+    origin: CORS_ORIGIN,
     methods: ['GET', 'POST'],
   },
 });
@@ -147,5 +149,5 @@ io.on('connection', (socket) => {
 app.use(express.static(path.join(__dirname, '../dist')));
 app.get('*', (_, res) => res.sendFile(path.join(__dirname, '../dist/index.html')));
 
-const PORT = 3001;
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 httpServer.listen(PORT, () => console.log(`Server on :${PORT}`));
