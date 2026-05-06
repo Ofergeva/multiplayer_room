@@ -6,8 +6,8 @@ html, body, #root {
   height: 100%;
   overflow: hidden;
   font-family: system-ui, -apple-system, sans-serif;
-  background: #1a1a2e;
-  color: #f0f0f0;
+  background: #f5f7ff;
+  color: #1a1a2e;
 }
 
 /* ─── Join screen ────────────────────────────────── */
@@ -17,17 +17,16 @@ html, body, #root {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+  background: linear-gradient(135deg, #eef1ff 0%, #f5f0ff 60%, #fdf4ff 100%);
 }
 
 .join-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
   padding: 40px;
   width: 360px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 32px rgba(80, 80, 160, 0.10);
 }
 
 .join-title {
@@ -35,7 +34,7 @@ html, body, #root {
   font-weight: 700;
   text-align: center;
   margin-bottom: 28px;
-  color: #e8e8ff;
+  color: #1a1a2e;
   letter-spacing: 0.5px;
 }
 
@@ -50,24 +49,24 @@ html, body, #root {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: rgba(255,255,255,0.5);
+  color: #7c84a0;
 }
 
 .join-input {
   width: 100%;
   padding: 10px 14px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: #f8f9ff;
+  border: 1px solid #d1d5e8;
   border-radius: 8px;
-  color: #f0f0f0;
-  font-size: 15px;
+  color: #1a1a2e;
+  font-size: 16px; /* ≥16px prevents iOS zoom on focus */
   outline: none;
   transition: border-color 0.2s;
 }
 .join-input:focus {
-  border-color: rgba(100,160,255,0.6);
+  border-color: #7ba8e8;
 }
-.join-input::placeholder { color: rgba(255,255,255,0.3); }
+.join-input::placeholder { color: #b0b4cc; }
 
 /* ─── Sprite picker ──────────────────────────────── */
 .sprite-picker {
@@ -83,30 +82,30 @@ html, body, #root {
   align-items: center;
   gap: 8px;
   padding: 14px 8px;
-  background: rgba(255,255,255,0.05);
-  border: 2px solid rgba(255,255,255,0.12);
+  background: #f8f9ff;
+  border: 2px solid #e2e8f0;
   border-radius: 10px;
   cursor: pointer;
   transition: border-color 0.15s, background 0.15s;
-  color: #ccc;
+  color: #7c84a0;
   font-size: 0;
 }
 .sprite-option:hover {
-  border-color: rgba(100,160,255,0.4);
-  background: rgba(255,255,255,0.08);
+  border-color: #a8c4f0;
+  background: #f0f4ff;
 }
 .sprite-option.selected {
   border-color: #5b9bd5;
-  background: rgba(91,155,213,0.15);
+  background: #eaf2fb;
 }
 
 .sprite-preview { display: flex; align-items: center; justify-content: center; }
 .sprite-label {
   font-size: 12px;
   font-weight: 500;
-  color: rgba(255,255,255,0.6);
+  color: #7c84a0;
 }
-.sprite-option.selected .sprite-label { color: #9ecfff; }
+.sprite-option.selected .sprite-label { color: #3a7bba; }
 
 /* ─── Join button ────────────────────────────────── */
 .join-btn {
@@ -126,20 +125,19 @@ html, body, #root {
 
 .join-error {
   font-size: 13px;
-  color: #ff7b7b;
+  color: #e05050;
   text-align: center;
   margin-top: 4px;
 }
 
 /* ─── Landing card ───────────────────────────────── */
 .landing-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
   padding: 48px 40px;
   width: 360px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 32px rgba(80, 80, 160, 0.10);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -148,7 +146,7 @@ html, body, #root {
 
 .landing-subtitle {
   font-size: 14px;
-  color: rgba(255,255,255,0.45);
+  color: #7c84a0;
   text-align: center;
   line-height: 1.5;
 }
@@ -162,7 +160,7 @@ html, body, #root {
 /* ─── Room ID hint ───────────────────────────────── */
 .room-id-hint {
   font-size: 11px;
-  color: rgba(255,255,255,0.3);
+  color: #9da4c0;
   text-align: center;
   margin-top: -20px;
   margin-bottom: 4px;
@@ -170,7 +168,7 @@ html, body, #root {
 .room-id-hint code {
   font-family: monospace;
   letter-spacing: 1px;
-  color: rgba(255,255,255,0.45);
+  color: #6d77a0;
 }
 
 /* ─── Color picker ───────────────────────────────── */
@@ -198,8 +196,8 @@ html, body, #root {
 }
 
 .color-swatch.selected {
-  border-color: #ffffff;
-  box-shadow: 0 0 0 2px rgba(255,255,255,0.35);
+  border-color: #1a1a2e;
+  box-shadow: 0 0 0 2px rgba(26,26,46,0.2);
   transform: scale(1.15);
 }
 
@@ -221,8 +219,8 @@ html, body, #root {
 /* ─── Chat bar ───────────────────────────────────── */
 .chat-bar {
   height: 60px;
-  background: #111827;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
   display: flex;
   align-items: center;
   padding: 0 12px;
@@ -242,7 +240,7 @@ html, body, #root {
   gap: 4px;
   font-size: 11px;
   font-weight: 600;
-  color: #c084fc;
+  color: #9333ea;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   line-height: 1;
@@ -257,17 +255,17 @@ html, body, #root {
 .chat-input {
   flex: 1;
   padding: 8px 12px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: #f8f9ff;
+  border: 1px solid #d1d5e8;
   border-radius: 6px;
-  color: #f0f0f0;
-  font-size: 14px;
+  color: #1a1a2e;
+  font-size: 16px; /* ≥16px prevents iOS zoom on focus */
   outline: none;
   transition: border-color 0.2s;
   min-width: 0;
 }
-.chat-input:focus { border-color: rgba(100,160,255,0.5); }
-.chat-input::placeholder { color: rgba(255,255,255,0.3); }
+.chat-input:focus { border-color: #7ba8e8; }
+.chat-input::placeholder { color: #b0b4cc; }
 
 .chat-btn {
   display: flex;
@@ -288,8 +286,8 @@ html, body, #root {
 .send-btn:hover { background: #4a8bc5; }
 
 .leave-btn {
-  background: rgba(255,80,80,0.15);
-  color: #ff7b7b;
-  border: 1px solid rgba(255,80,80,0.25);
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
 }
-.leave-btn:hover { background: rgba(255,80,80,0.25); }
+.leave-btn:hover { background: #fee2e2; }
